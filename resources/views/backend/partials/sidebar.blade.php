@@ -13,6 +13,7 @@
               </a>
             </li>
 
+            
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('category.list')}}">
               <svg class="bi"><use xlink:href="#file-earmark"/></svg>
@@ -20,19 +21,71 @@
               </a>
             </li>
 
+
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('order.list')}}">
-                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Orders
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Food
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('product.list')}}">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{'/customer/list'}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Products
+                Customer
               </a>
             </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Order
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Order Details
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Payment
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Admin
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Report
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Wishlist
+              </a>
+            </li>
+
+
+            
 
 
           </ul>

@@ -23,6 +23,37 @@ class CategoryController extends Controller
     {
         return view('backend.pages.category.create');
     }
+    
+
+
+     //Edit
+     
+     public function categoryEdit($id)
+     {
+         $categories = Category::find($id);
+         // dd($foods);
+         return view('backend.pages.category.edit',compact('categories'));
+     }
+ 
+     //update
+     
+     public function categoryUpdate(Request $request,$id){
+ 
+        // dd($request->all());
+         $request->validate([
+            'name' => $request->cat_name,
+            'description' => $request->description,
+            
+         ]);
+         notify()->success('Category updated successfully');
+         return to_route('category.list');}
+ 
+
+
+
+
+
+        //foodpost
 
     public function categoryStore(Request $request)
     {
@@ -56,4 +87,22 @@ class CategoryController extends Controller
 
         return redirect()->route('category.list');
     }
+
+
+
+    //delete
+
+
+    public function categoryDelete($c_id)
+    {
+    
+    // Food::find($f_id)->delete();
+    
+      $categories=Category::find($c_id);
+      $categories->delete();
+    
+      notify()->success('Category deleted successfully.');
+      return redirect()->back();
+    }
+
 }
