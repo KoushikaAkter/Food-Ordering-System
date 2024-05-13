@@ -26,6 +26,7 @@ Route::get('/',[WebpageController::class,'homepage'])->name('homepage');
 
 Route::get('/add-to-cart/{productId}',[OrderController::class, 'addToCart'])->name('add.to.cart');
 Route::get('/view-cart',[OrderController::class,'viewCart'])->name('view.cart');
+Route::get('/checkout',[OrderController::class,'checkout'])->name('checkout');
 
 Route::group(['prefix' => 'admin'], function () {
 

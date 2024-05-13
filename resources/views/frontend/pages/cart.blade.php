@@ -47,7 +47,7 @@
                     </button>
                 </div>
                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                    <h5 class="mb-0">BDT{{$cart['price']}}</h5>
+                    <h5 class="mb-0">{{$cart['quantity']}} x {{$cart['price']}}={{$cart['subtotal']}}</h5>
                 </div>
                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                 <a href="" class="btn btn-warning">Delete</a>
@@ -65,7 +65,7 @@
 
         <div class="card">
           <div class="card-body">
-            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+            <a href="{{route('checkout')}}" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-block btn-lg">Checkout</a>
           </div>
         </div>
 
