@@ -80,7 +80,7 @@ class FoodController extends Controller
 
          //bam pase column name => dan pase value
         'name'=>$request->name,
-        'categoryid'=>$request->cat_id,
+        'category_id'=>$request->cat_id,
         'price'=>$request->price,
         'description'=>$request->description,
         'quantity'=>$request->quantity,
@@ -97,8 +97,9 @@ class FoodController extends Controller
 
       
     }
- 
 
+ 
+    //DELETE
 
 public function foodDelete($f_id)
 {
@@ -111,6 +112,13 @@ public function foodDelete($f_id)
   notify()->success('Food deleted successfully.');
   return redirect()->back();
 }
+    //VIEW
 
+    public function foodView($id)
+    {
+        $foods = Food::find($id);
+        
+        return view('backend.pages.food.view',compact('foods'));
+    }
 }
 

@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('customerregistrations', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
-            $table->double('total_price');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('address');
+            $table->string('name',40);
+            $table->string('email',100)->unique();
+            $table->string('password');
             $table->string('phone')->nullable();
-            $table->string('email');
-            $table->string('payment_method');
+            $table->string('address');
+            $table->string('dob');
+            $table->string('image')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('customerregistrations');
     }
 };

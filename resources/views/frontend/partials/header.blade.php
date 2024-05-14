@@ -11,7 +11,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item active"><a class="nav-link" href="{{route('homepage')}}">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 						<li class="nav-item dropdown">
@@ -31,6 +31,8 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{route('view.cart')}}">Cart({{session()->get('cart') ? count(session()->get('cart')) : 0}})</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{route('register')}}">Registration</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">Login</a></li>
 					</ul>
 				</div>
 			</div>

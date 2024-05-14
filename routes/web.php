@@ -19,21 +19,33 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-// */
-Route::get('/',[WebpageController::class,'homepage'])->name('homepage');
-// Route::get('about-us',[WebpageController::class,'about_us'])->name('about.us');
+*/
 
+       //HOMEPAGE
 
-Route::get('/add-to-cart/{productId}',[OrderController::class, 'addToCart'])->name('add.to.cart');
-Route::get('/view-cart',[OrderController::class,'viewCart'])->name('view.cart');
-Route::get('/checkout',[OrderController::class,'checkout'])->name('checkout');
+       Route::get('/',[WebpageController::class,'homepage'])->name('homepage');
+       Route::get('about-us',[WebpageController::class,'about_us'])->name('about.us');
 
-Route::group(['prefix' => 'admin'], function () {
+       Route::get('/customer',[WebpageController::class,'formreg'])->name('register');
+       Route::post('/customer/done',[WebpageController::class,'reg'])->name('customer.done');
 
-    Route::get('/login', [UserController::class, 'login'])->name('admin.login');
-    Route::post('/do-login', [UserController::class, 'doLogin'])->name('admin.do.login');
+        //ORDER 
 
-    Route::group(['middleware' => 'auth'], function () {
+        Route::get('/add-to-cart/{productId}',[OrderController::class, 'addToCart'])->name('add.to.cart');
+        Route::get('/view-cart',[OrderController::class,'viewCart'])->name('view.cart');
+        Route::get('/checkout',[OrderController::class,'checkout'])->name('checkout');
+
+        Route::post('/place-order',[OrderController::class,'placeOrder'])->name('order.place');
+       
+
+        //ADMIN LOGIN
+
+        Route::group(['prefix' => 'admin'], function () { 
+        Route::get('/login', [UserController::class, 'login'])->name('admin.login');
+        Route::post('/do-login', [UserController::class, 'doLogin'])->name('admin.do.login');
+
+        Route::group(['middleware' => 'auth'], function () {
+        Route::get('sign-out', [UserController::class, 'signout'])->name('do.signout');
 
        
         Route::get('/', [HomeController::class, 'showHomePage'])->name('dashboard');
@@ -46,9 +58,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/food/edit/{id}', [FoodController::class, 'foodedit'])->name('food.edit');
         Route::post('/food/update/{id}', [FoodController::class, 'foodupdate'])->name('food.update');
         Route::get('/food/delete/{food_id}',[FoodController::class, 'foodDelete'])->name('food.delete');
+        Route::get('/food/view/{id}', [FoodController::class, 'foodView'])->name('food.view');
         
 
-        Route::get('/customer/list', [CustomerController::class, 'customerlist']);
+        Route::get('/customer/list', [CustomerController::class, 'customerlist'])->name('customer.list');
 
         //CATEGORY
 
@@ -58,15 +71,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
         Route::post('/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('category.update');
         Route::get('/category/delete/{category_id}',[CategoryController::class, 'categoryDelete'])->name('category.delete');
-        
+        Route::get('/category/view/{id}', [CategoryController::class, 'categoryView'])->name('category.view');
 
-        
-
-
-        //SIGNOUT
-        
-
-        Route::get('sign-out', [UserController::class, 'signout'])->name('do.signout');
+       
 
        
 

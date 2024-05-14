@@ -26,16 +26,16 @@
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<h3>Contact information</h3>
-					<p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
-					<p class="lead"><a href="#">+01 2000 800 9999</a></p>
-					<p><a href="#"> info@admin.com</a></p>
+					<p class="lead">Bashundhara,Block F,Road 19,House-12</p>
+					<p class="lead"><a href="#">+01639608940</a></p>
+					<p><a href="#">koushikamoon8447@gmail.com</a></p>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<h3>Opening hours</h3>
-					<p><span class="text-color">Monday: </span>Closed</p>
-					<p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
-					<p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
-					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+					<p><span class="text-color">Wednesday: </span>Closed</p>
+					<p><span class="text-color">Sat-Sun :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Mon-Tue :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Thu-Fri :</span> 5:PM - 10PM</p>
 				</div>
 			</div>
 		</div>

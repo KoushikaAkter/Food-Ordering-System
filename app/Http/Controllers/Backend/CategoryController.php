@@ -69,12 +69,16 @@ class CategoryController extends Controller
         }
 
         $cat_image = '';
-        if ($image = $request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
             // dd($image);
             $cat_image = 'IMG' . '-' . date('Ymdhsi') . '.' . $image->getClientOriginalExtension();
             $image->storeAs('/category',$cat_image );
         }
+
+
+
+
 
         Category::create([
             //bam pase column name => dan pase value
@@ -104,5 +108,14 @@ class CategoryController extends Controller
       notify()->success('Category deleted successfully.');
       return redirect()->back();
     }
+
+      //VIEW
+    public function categoryView($id)
+    {
+        $categories = Category::find($id);
+        // dd($foods);
+        return view('backend.pages.category.view',compact('categories'));
+    }
+
 
 }

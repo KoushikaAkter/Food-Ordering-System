@@ -35,7 +35,7 @@
 
       <td>
                         <a class="btn btn-info" href="{{route('food.edit', $data->id)}}">Edit</a>
-                        <a class="btn btn-success" href="">View</a>
+                        <a class="btn btn-success" href="{{route('food.view',$data->id)}}">View</a>
                         <a class="btn btn-danger" href="{{route('food.delete',$data->id)}}">Delete</a>
                     </td>
       

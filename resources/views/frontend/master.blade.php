@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
+  @notifyCss
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
    
@@ -63,5 +64,8 @@
 	<script src="{{url('frontend/js/form-validator.min.js')}}"></script>
     <script src="{{url('frontend/js/contact-form-script.js')}}"></script>
     <script src="{{url('frontend/js/custom.js')}}"></script>
+    @include('notify::components.notify')
+
+    @notifyJs
 </body>
 </html>

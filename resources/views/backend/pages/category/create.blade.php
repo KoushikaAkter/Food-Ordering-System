@@ -16,14 +16,14 @@
 
         <div class="form-group">
             <label for="">Description</label>
-            <textarea name="description" id="" class="form-control" placeholder="Enter description"></textarea>
+            <textarea name="description" id="" class="form-control" placeholder="Enter category description"></textarea>
         </div>
 
 
 
         <div class="form-group">
             <label for="">Upload Image</label>
-            <input name="image" type="file" class="form-control" id="" placeholder="Enter product quantity">
+            <input name="image" type="file" class="form-control" id="" placeholder="Enter category image">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
