@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="{{url('/frontend/css/responsive.css')}}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{url('/frontend/css/custom.css')}}">
+    
+
+    <style type="text/css"> .notify{ z-index: 1000000; margin-top: 5%; } </style>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

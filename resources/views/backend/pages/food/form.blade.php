@@ -14,16 +14,21 @@
     <input required type="text" class="form-control" id="" name="name" placeholder="Enter food name">
   </div>
 
-
   <div class="form-group">
-    <label for="">Category Id</label>
-    <input type="text" class="form-control" id="" name="cat_id" placeholder="Enter category id">
+    <label for="">Select Category</label>
+   <select required class="form-control" name="cat_id" id="">
+
+    @foreach ($category as $cat )
+    <option value="{{$cat->id}}">{{$cat->name}}</option>
+    @endforeach
+   
+   </select>
   </div>
 
 
   <div class="form-group">
     <label for="">Food Price</label>
-    <input type="text" class="form-control" id="" name="price" placeholder="Enter food price">
+    <input type="text" class="form-control" min="10" name="price" placeholder="Enter food price">
   </div> 
 
 

@@ -21,33 +21,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-       //HOMEPAGE
+       //WEBSITE//HOMEPAGE
 
        Route::get('/',[WebpageController::class,'homepage'])->name('homepage');
        Route::get('about-us',[WebpageController::class,'about_us'])->name('about.us');
+      
+       //REGISTRATION
 
        Route::get('/customer',[WebpageController::class,'formreg'])->name('register');
        Route::post('/customer/done',[WebpageController::class,'reg'])->name('customer.done');
+       //WEBSITE//LOGIN//LOGOUT
+       Route::get('/login/form',[WebpageController::class,'loginForm'])->name('login.form');
+       Route::post('/login/success',[WebpageController::class,'loginsuccess'])->name('login.success');
+       Route::get('/logout/success',[WebpageController::class,'logoutsuccess'])->name('logout.success');
+     
+       Route::group(['middleware' => 'auth'], function () {
 
-        //ORDER 
-
+       //ORDER 
         Route::get('/add-to-cart/{productId}',[OrderController::class, 'addToCart'])->name('add.to.cart');
         Route::get('/view-cart',[OrderController::class,'viewCart'])->name('view.cart');
         Route::get('/checkout',[OrderController::class,'checkout'])->name('checkout');
-
         Route::post('/place-order',[OrderController::class,'placeOrder'])->name('order.place');
-       
+        Route::get('/clear-cart',[OrderController::class,'clearCart'])->name('clear.cart');
+         });
+
+
+
 
         //ADMIN LOGIN
-
         Route::group(['prefix' => 'admin'], function () { 
         Route::get('/login', [UserController::class, 'login'])->name('admin.login');
-        Route::post('/do-login', [UserController::class, 'doLogin'])->name('admin.do.login');
+        Route::post('/do-login', [UserController::class,'doLogin'])->name('admin.do.login');
 
         Route::group(['middleware' => 'auth'], function () {
-        Route::get('sign-out', [UserController::class, 'signout'])->name('do.signout');
+        Route::get('sign-out',[UserController::class, 'signout'])->name('do.signout');
 
-       
+        //adminDASHBOARD
         Route::get('/', [HomeController::class, 'showHomePage'])->name('dashboard');
 
         //FOOD
@@ -60,8 +69,15 @@ use Illuminate\Support\Facades\Route;
         Route::get('/food/delete/{food_id}',[FoodController::class, 'foodDelete'])->name('food.delete');
         Route::get('/food/view/{id}', [FoodController::class, 'foodView'])->name('food.view');
         
-
+        ///CUSTOMER
         Route::get('/customer/list', [CustomerController::class, 'customerlist'])->name('customer.list');
+        Route::get('/customer/form', [CustomerController::class, 'customerform'])->name('customer.form');
+        Route::post('/customer/store', [CustomerController::class, 'customerStore'])->name('customer.store');       
+        Route::get('/customer/edit/{id}', [CustomerController::class, 'customerEdit'])->name('customer.edit');
+        Route::post('/customer/update/{id}', [CustomerController::class, 'customerUpdate'])->name('customer.update');
+        Route::get('/customer/delete/{category_id}',[CustomerController::class, 'customerDelete'])->name('customer.delete');
+        Route::get('/customer/view/{id}', [CustomerController::class, 'customerView'])->name('customer.view');
+
 
         //CATEGORY
 
@@ -72,12 +88,9 @@ use Illuminate\Support\Facades\Route;
         Route::post('/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('category.update');
         Route::get('/category/delete/{category_id}',[CategoryController::class, 'categoryDelete'])->name('category.delete');
         Route::get('/category/view/{id}', [CategoryController::class, 'categoryView'])->name('category.view');
-
-       
-
-       
-
-
+ 
+         //ORDER DETAILS
+       Route::get('/add-to-cart/{productId}',[OrderController::class, 'addToCart'])->name('add.to.cart');
 
      });
 });

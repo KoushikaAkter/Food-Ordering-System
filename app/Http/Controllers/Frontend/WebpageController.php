@@ -19,7 +19,7 @@ class WebpageController extends Controller
     }
     public function about_us()
     {
-        return view('frontend.pages.about_us.about_us');
+        return view('frontend.pages.about');
     }
     
     //REG
@@ -87,6 +87,38 @@ class WebpageController extends Controller
 
         return redirect()->route('homepage');
         
+    }
+
+    public function loginForm(){
+        return view('frontend.pages.login');
+
+    }
+    
+    public function loginsuccess(Request $request){
+
+
+        //dd($request->all());
+
+
+        $userInput=['email'=>$request->email,'password'=>$request->password];
+        $checkLogin=auth()->guard('customerGuard')->attempt($userInput);
+
+        if($checkLogin){
+         //dd("login done");
+
+        notify()->success('Login successfull');
+
+        return redirect()->route('homepage');
+
+        }
+        notify()->error('invalid user');
+        return redirect()->back();
+    }
+
+    public function logoutsuccess(){
+            
+        auth('customerGuard')->logout();
+        return redirect()->back();
     }
 
 

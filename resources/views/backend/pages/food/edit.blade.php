@@ -16,12 +16,6 @@
 
 
   <div class="form-group">
-    <label for="">Category Id</label>
-    <input type="text" class="form-control" id="" name="cat_id"  placeholder="Enter category id">
-  </div>
-
-
-  <div class="form-group">
     <label for="">Food Price</label>
     <input type="text" class="form-control" id="" name="price" value="{{$foods->price}}" placeholder="Enter food price">
   </div> 
@@ -41,7 +35,7 @@
 
   <div class="form-group">
     <label for="">Status</label>
-    <input type="text" class="form-control" id="" name="status" placeholder="Enter food status">
+    <input value="{{$foods->status}}" type="text" class="form-control" id="" name="status" placeholder="Enter food status">
   </div>
 
 

@@ -15,7 +15,7 @@
 
             
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('category.list')}}">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('category.list')}}" role="button">
               <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Category
               </a>
@@ -30,7 +30,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{'/customer/list'}}">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('customer.list')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Customer
               </a>
@@ -41,14 +41,6 @@
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Order
-              </a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
-              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Order Details
               </a>
             </li>
 
@@ -77,16 +69,7 @@
             </li>
 
 
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
-              <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Wishlist
-              </a>
-            </li>
-
-
-            
-
+           
 
           </ul>
 

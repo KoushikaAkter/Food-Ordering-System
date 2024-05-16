@@ -15,11 +15,11 @@ class CustomerController extends Controller
         return View('backend.pages.customer.list',compact('data'));
     }
 
-    public function form(){
+    public function customerform(){
         return view('backend.pages.customer.form');
     }
 
-    public function store(Request $request){
+    public function customerstore(Request $request){
       $checkValidation=Validator::make($request->all(),[
                     'name'=>'required',
                     'email'=>'required',
@@ -46,7 +46,7 @@ class CustomerController extends Controller
                     'name'=>$request->name,
                     'email'=>strtolower($request->email),
                     'password'=>bcrypt($request->password),
-                    'phoneno'=>$request->phone,
+                    'phone'=>$request->phone,
                     'address'=>$request->address,
                     'dob'=>$request->dob,
                     'image'=>$request->image,
@@ -60,22 +60,51 @@ class CustomerController extends Controller
                 return redirect()->route('customer.form');
                 
             }
+
+    /////EDIT
         
+        public function customerEdit($id)
+     {
+         $customer = Customer::find($id);
+         
+         return view('backend.pages.customer.edit',compact('customer'));
+     }
+ 
+     //update
+     
+     public function categoryUpdate(Request $request,$id){
+        $request->validate([
+          
+                    'name'=>$request->name,
+                    'email'=>strtolower($request->email),
+                    'password'=>bcrypt($request->password),
+                    'phone'=>$request->phone,
+                    'address'=>$request->address,
+                    'dob'=>$request->dob,
+                    'image'=>$request->image,
+                    'status'=>$request->status,
+            
+         ]);
+         notify()->success('Customer updated successfully');
+         return to_route('customer.list');}
         
-            public function delete($customer_id){
+        ///DELETE
+            public function customerDelete($id){
         
-                // Category::find($c_id)->delete();
-                
-                  $Customer=Customer::find($customer_id);
-                  $Customer->delete();
+                  $customer=Customer::find($id);
+                  $customer->delete();
                 
                   notify()->success('Customer deleted successfully.');
                   return redirect()->back();
                 }
                 
-            
-
-        
+      /////VIEW
+             public function customerView($id)
+      {
+          $customer = Customer::find($id);
+          return view('backend.pages.customer.view',compact('customer'));
+      }
+              
 
     }
 

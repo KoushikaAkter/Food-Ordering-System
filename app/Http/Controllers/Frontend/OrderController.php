@@ -77,16 +77,23 @@ class OrderController extends Controller
 
     }
 
-    public function viewCart()
-    {
-        return view('frontend.pages.cart');
-    }
-
     public function checkout()
     {
         return view('frontend.pages.checkout');    
     }
 
+    public function viewCart()
+    {
+        return view('frontend.pages.cart');    
+    }
+
+    public function clearCart()
+    {
+        
+        session()->forget('cart');
+        notify()->success('Cart cleared.');
+        return redirect()->back();
+    }
 
     public function placeOrder(Request $request)
     {
@@ -95,8 +102,8 @@ class OrderController extends Controller
        $cartData=session()->get('cart');
        //insert data into order table
        $order=Order::create([
-        'customer_id'=>1,
-        // 'customer_id'=>auth()->user()->id,
+        //'customer_id'=>1,
+        'customer_id'=>auth()->user()->id,
         'total_price'=>array_sum(array_column($cartData,'subtotal')),
         'first_name'=>$request->first_name,
         'last_name'=>$request->last_name,
@@ -118,11 +125,16 @@ class OrderController extends Controller
             'quantity'=>$data['quantity'],
             'subtotal'=>$data['subtotal'],
         ]);
+
+        $food=Food::find($data['id']);
+        $food->decrement('quantity',$data['quantity']);
        }
 
        session()->forget('cart');
        notify()->success('Order placed successfully.');
        return redirect()->route('homepage');
+
+       
 
     }
 }

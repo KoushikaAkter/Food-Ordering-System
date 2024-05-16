@@ -13,7 +13,7 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active"><a class="nav-link" href="{{route('homepage')}}">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{route('about.us')}}">About</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -21,18 +21,21 @@
 								<a class="dropdown-item" href="stuff.html">Stuff</a>
 								<a class="dropdown-item" href="gallery.html">Gallery</a>
 							</div>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="blog.html">blog</a>
-								<a class="dropdown-item" href="blog-details.html">blog Single</a>
-							</div>
-						</li>
+						
 						<li class="nav-item">
 							<a class="nav-link" href="{{route('view.cart')}}">Cart({{session()->get('cart') ? count(session()->get('cart')) : 0}})</a></li>
+
+
+							@auth('customerGuard')
+							<i class='fas fa-id-card' style='font-size:24px;'> <a href="">{{auth('customerGuard')->user()->name}}</a></i>
+							<a class="dropdown-item" href="{{route('logout.success')}}">Logout</a>
+
+							 @endauth
+
+                            @guest('customerGuard')
 							<li class="nav-item"><a class="nav-link" href="{{route('register')}}">Registration</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">Login</a></li>
+						<li class="nav-item"><a class="nav-link"  href="{{route('login.form')}}">Login</a></li>
+						@endguest
 					</ul>
 				</div>
 			</div>

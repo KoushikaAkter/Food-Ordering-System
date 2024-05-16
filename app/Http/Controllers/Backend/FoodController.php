@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Food;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,7 +20,9 @@ class FoodController extends Controller
 
     public function  foodform()
     {
-       return view('backend.pages.food.form');
+        $category=Category::all();
+
+       return view('backend.pages.food.form',compact('category'));
 
     }
 
@@ -37,14 +40,18 @@ class FoodController extends Controller
     public function foodupdate(Request $request,$id){
 
         // dd($request->all());
-        $request->validate([
+
+        $food=Food::find($id);
+
+        $food->update([
         'name'=>$request->name,
-        'categoryid'=>$request->cat_id,
+        // 'category_id'=>$request->cat_id,
         'price'=>$request->price,
         'description'=>$request->description,
         'quantity'=>$request->quantity,
-        'status'=>$request->status,
+        // 'status'=>$request->status,
         ]);
+
         notify()->success('Food updated successfully');
         return to_route('food.list');
     }
@@ -53,51 +60,39 @@ class FoodController extends Controller
    
     //foodpost
 
-    public function  foodstore(Request $request)
+    public function foodstore(Request $request)
     {
-        
-    // dd($request->all());
-            $checkValidation = Validator::make($request->all(), [
-                'name' => 'required',
-            ]);
+        $checkValidation = Validator::make($request->all(), [
+            'name' => 'required',
+            'price' => 'required|numeric|min:10', // Adding validation for price
+        ]);
     
-            if ($checkValidation->fails()) {
-                // notify()->error("something went wrong.");
-                notify()->error($checkValidation->getMessageBag());
-                return redirect()->back();
-            }
+        if ($checkValidation->fails()) {
+            notify()->error($checkValidation->getMessageBag());
+            return redirect()->back();
+        }
     
-            $food_image = '';
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                // dd($image);
-                $food_image = 'IMG' . '-' . date('Ymdhsi') . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('/food',$food_image );
-            }
-
-        
-       Food::create([
-
-         //bam pase column name => dan pase value
-        'name'=>$request->name,
-        'category_id'=>$request->cat_id,
-        'price'=>$request->price,
-        'description'=>$request->description,
-        'quantity'=>$request->quantity,
-        'status'=>$request->status,
-        'image'=>$food_image,
-        
-
-       ]);
-
-       notify()->success('food Created Successfully.');
-
-
-       return redirect()->back();
-
-      
+        $food_image = '';
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $food_image = 'IMG' . '-' . date('Ymdhsi') . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('/food', $food_image);
+        }
+    
+        Food::create([
+            'name' => $request->name,
+            'category_id' => $request->cat_id,
+            'price' => $request->price,
+            'description' => $request->description,
+            'quantity' => $request->quantity,
+            'status' => $request->status,
+            'image' => $food_image,
+        ]);
+    
+        notify()->success('Food Created Successfully.');
+        return redirect()->back();
     }
-
+    
  
     //DELETE
 

@@ -11,8 +11,4 @@ class HomeController extends Controller
         return view('backend.pages.dashboard');
     }
 
-    public function orderList()
-    {
-        return view('backend.pages.order-list');
-    }
 }
