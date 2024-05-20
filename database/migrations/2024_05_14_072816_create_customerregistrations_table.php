@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('dob');
             $table->string('image')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

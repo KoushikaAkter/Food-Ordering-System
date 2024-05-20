@@ -49,24 +49,21 @@ use Illuminate\Support\Facades\Route;
         Route::post('/place-order',[OrderController::class,'placeOrder'])->name('order.place');
         Route::get('/clear-cart',[OrderController::class,'clearCart'])->name('clear.cart');
 
-// SSLCOMMERZ Start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
-
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
-
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
-
-Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
-//SSLCOMMERZ END
 
          });
 
 
 
+              
+      // SSLCOMMERZ Start
+   
+
+      Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+      Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+      Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+      Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+      //SSLCOMMERZ END
 
         //ADMIN LOGIN
         Route::group(['prefix' => 'admin'], function () { 
