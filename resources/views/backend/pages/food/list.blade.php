@@ -4,7 +4,7 @@
 <h1>Food List</h1>
 
 
-<a href="{{route('food.form')}}" class="btn btn-success">Add Food</a>
+<a href="{{route('food.form')}}" class="btn btn-success">Food</a>
 
 
 <table class="table">

@@ -6,11 +6,13 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-6 text-center">
 					<div class="inner-column">
-						<h1>Welcome To <span>Live Dinner Restaurant</span></h1>
+						<h1>Welcome To <span>Koushika's Food Ordering System</span></h1>
 						<h4>Little Story</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et sem. </p>
-						<p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. Sed aliquam metus lorem, a pellentesque tellus pretium a. Nulla placerat elit in justo vestibulum, et maximus sem pulvinar.</p>
-						<a class="btn btn-lg btn-circle btn-outline-new-white" href="#">Reservation</a>
+						<p>Our mission was simple yet ambitious.Our journey towards digital culinary supremacy begins with a deep-rooted passion for food. From the inception of our establishment, we have been driven by a relentless pursuit of perfection, constantly pushing the boundaries of flavor and creativity to craft dishes that captivate the senses and leave a lasting impression. </p>
+						<p>The texture of food also plays a crucial role in the enjoyment of a meal, with contrasting textures adding interest and excitement to each bite. Crispy, crunchy elements complementing creamy textures, or tender morsels juxtaposed with chewy components create a symphony of sensations that delight the palate and keep diners coming back for more.
+
+                     </p>
+						
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
@@ -18,8 +20,10 @@
 				</div>
 				<div class="col-md-12">
 					<div class="inner-pt">
-						<p>Sed tincidunt, neque at egestas imperdiet, nulla sapien blandit nunc, sit amet pulvinar orci nibh ut massa. Proin nec lectus sed nunc placerat semper. Duis hendrerit elit nec sapien porttitor, ut pretium ipsum feugiat. Aenean volutpat porta nisi in gravida. Curabitur pulvinar ligula sed facilisis bibendum. Nullam vitae nulla elit. </p>
-						<p>Integer purus velit, eleifend eu magna volutpat, porttitor blandit lectus. Aenean risus odio, efficitur quis erat eget, mattis tristique arcu. Fusce in ante enim. Integer consectetur elit nec laoreet rutrum. Mauris porta turpis nec tellus accumsan pellentesque. Morbi non quam tempus, convallis urna in, cursus mauris. </p>
+						<p>In the culinary world, where taste reigns supreme and quality is paramount, we proudly assert that our food stands unrivaled. With a commitment to excellence ingrained in every aspect of our culinary journey, from sourcing the finest ingredients to crafting meticulously curated dishes, we have earned our reputation as purveyors of the best food. This essay delves into the pillars of our culinary philosophy and celebrates the unparalleled quality that sets our food apart. </p>
+						<p>As we continue on our journey, we remain dedicated to pushing the boundaries of flavor, creativity, and technology, continually striving to delight and inspire our audience with every dish we serve and every interaction we facilitate. With our passion for food as our guiding force, we are poised to elevate the digital dining experience to new heights, inviting our customers to join us on a journey of culinary discovery and delight.
+
+</p>
 					</div>
 				</div>
 			</div>

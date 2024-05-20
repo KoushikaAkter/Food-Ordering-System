@@ -122,5 +122,16 @@ class WebpageController extends Controller
     }
 
 
+     public function foodUnderCategory($category_id){
+        $foodUnderCategory=Food::where('category_id',$category_id)->get();
+        //dd($foodUnderCategory);
+        return view('frontend.pages.foodUnderCategory',compact('foodUnderCategory'));
+
+    
+
+     
+}
+
+
 
 }
