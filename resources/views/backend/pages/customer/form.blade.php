@@ -63,10 +63,7 @@
             <input type="text" class="form-control" id="address" name="address" placeholder="Enter address">
         </div>
        
-        <div class="mb-3">
-            <label for="dob" class="form-label">Date of Birth</label>
-            <input type="date" class="form-control" id="dob" name="dob">
-        </div>
+        
 
         <div class="mb-3">
   <label for="image" class="form-label">Image</label>

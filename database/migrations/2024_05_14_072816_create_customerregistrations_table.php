@@ -18,9 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('address');
-            $table->string('dob');
             $table->string('image')->nullable();
-            $table->string('status')->default('active');
             $table->timestamps();
         });
     }

@@ -14,7 +14,6 @@
                 <th scope="col">Category Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Category Image</th>
-               
                 <th>Action</th>
             </tr>
         </thead>

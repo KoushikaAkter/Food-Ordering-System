@@ -31,6 +31,6 @@ class UserController extends Controller
     {
         auth()->logout();
         notify()->success('Logout successful');
-        return view('backend.pages.login');
+        return redirect()->route('do.signout');
     }
 }

@@ -38,7 +38,7 @@
 
 
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route(('order.list'))}}">
                 <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Order
               </a>
@@ -57,7 +57,7 @@
 
 
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('food.list')}}">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route(('report.list'))}}">
               <svg class="bi"><use xlink:href="#file-earmark"/></svg>
                 Report
               </a>

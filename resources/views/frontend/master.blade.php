@@ -56,16 +56,7 @@
   </div>
 
 
-  <div class="about-section-box">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 text-center">
-
-
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   @include('frontend.partials.footer')
 

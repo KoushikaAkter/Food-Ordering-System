@@ -70,12 +70,9 @@ class OrderController extends Controller
             notify()->success('New Food added to cart successfully.');
             return redirect()->back();
 
-
             }
 
-
         }
-
 
     }
 
@@ -99,6 +96,7 @@ class OrderController extends Controller
 
     public function placeOrder(Request $request)
     {
+        // dd($request->all());
        //validation
 
        try{
@@ -108,10 +106,10 @@ class OrderController extends Controller
        //insert data into order table
        $order=Order::create([
         //'customer_id'=>1,
+        'transaction_id' => date('YmdHis'),
         'customer_id'=>auth()->user()->id,
         'total_price'=>array_sum(array_column($cartData,'subtotal')),
-        'first_name'=>$request->first_name,
-        'last_name'=>$request->last_name,
+        'name'=>$request->name,
         'address'=>$request->address,
         'phone'=>$request->phone,
         'email'=>$request->email,
@@ -138,20 +136,16 @@ class OrderController extends Controller
        session()->forget('cart');
 
        if($request->paymentMethod=='ssl'){
-        //pay with ssl
-        
+        //pay with ssl        
 
         $this->payNow($order);
        }
        notify()->success('Order placed successfully.');
        return redirect()->route('homepage');
-
-
        }catch(Throwable $exception)
        {
         dd($exception->getMessage());
        }
-
     
     }
 
@@ -224,5 +218,26 @@ class OrderController extends Controller
         }
     }
 
+    public function deleteorder($orderId)
+    {
+        $cartData = session()->get('cart', []);
+
+        // Find the index of the item with the provided order ID in the cart array
+        $index = array_search($orderId, array_column($cartData, 'id'));
+
+        // If the item is found in the cart
+        if ($index !== false) {
+            // Remove the item from the cart array
+            unset($cartData[$index]);
+            // Update the cart data in the session
+            session(['cart' => array_values($cartData)]); // Re-index the array after removing the item
+
+            notify()->success('Item deleted from cart successfully.');
+        } else {
+            // Optionally, handle the case where the item with the provided order ID is not found in the cart
+            notify()->error('Item not found in cart.');
+        }
+
+        return redirect()->back();
+    }
 }
-    

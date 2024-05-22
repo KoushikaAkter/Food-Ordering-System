@@ -3,6 +3,7 @@
 
 @if($foodUnderCategory->count()>0)
 
+<div style="padding-top: 100px;">
 
 <div class="row">
     @foreach($foodUnderCategory as $food)
@@ -25,5 +26,6 @@
 
 <h2>No food found</h2>
 @endif
+</div>
 </div>
 @endsection

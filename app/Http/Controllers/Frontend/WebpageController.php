@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Food;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
+use Illuminate\Support\Facades\Auth;
 
 class WebpageController extends Controller
 {
@@ -41,9 +44,6 @@ class WebpageController extends Controller
             'password'=>'required',
             'phone'=>'required|regex:/(01)[0-9]{9}/',
             'address'=>'required',
-            'dob'=>'required|date',
-           
-            'status'=>'required',
            ]);
                 
            if($checkValidation->fails()){
@@ -75,9 +75,8 @@ class WebpageController extends Controller
             'password'=>bcrypt($request->password),
             'phone'=>$request->phone,
             'address'=>$request->address,
-            'dob'=>$request->dob,
-            'image'=>$fileNameCustomer,
-            'status'=>$request->status,
+            
+          //  'image'=>$fileNameCustomer,
 
 
         ]);
@@ -126,11 +125,57 @@ class WebpageController extends Controller
         $foodUnderCategory=Food::where('category_id',$category_id)->get();
         //dd($foodUnderCategory);
         return view('frontend.pages.foodUnderCategory',compact('foodUnderCategory'));
+       }
 
+       public function profileview()
+    {
+        $user = auth()->user();
+        // dd($user);
+        $orders = Order::with('orderDetails')->where('customer_id', $user->id)->get();
+        return view('frontend.pages.profile', compact('orders', 'user'));
+    }
+
+    public function profileEdit($id){
+        // dd($id);
+        $customer = Customer::find($id);
+        return view('frontend.pages.editProfile', compact('customer'));
+    }
+
+    public function profileUpdate(Request $request, $id){
+        // dd($id);
+        $customer = Customer::find($id);
+
+        $customer->update([
+          
+            'name'=>$request->name,
+            'email'=>strtolower($request->email),
+            'password'=>bcrypt($request->password),
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            
+          //  'image'=>$fileNameCustomer,
+
+
+        ]);
+        notify()->success('Updated Successfully');
+
+        return redirect()->route('profile.view');
+    }
     
 
-     
-}
+    public function contact()
+    {
+        return view('frontend.pages.contact');
+    }
+
+    public function singleOrderView($id)
+    {
+        // dd($id);
+        $orderview = OrderDetail::with('food')->where('order_id', $id)->get();
+        // dd($orderview);
+        return view('frontend.pages.order.singleOrderView', compact('orderview'));
+    }
+
 
 
 

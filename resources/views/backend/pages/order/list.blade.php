@@ -1,67 +1,53 @@
 @extends('backend.master')
 @section('content')
 
-
-
-
-
-
-
-
-
-<h1>Customer list</h1>
 <div>
-    <a href="{{route('customer.form')}}" type="button" class="btn btn-success">Edit Customer List</a>
+  <h1>All Order Report</h1>
+  <button onclick="printReport()" class="btn btn-primary mt-3">Print </button>
+
+  <table class="table">
+    <thead>
+
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Food Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Transaction ID</th>
+
+        <th scope="col">Payment Method</th>
+        <th scope="col">Payment Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @foreach($list as $order)
+      @foreach($order->orderDetails as $detail)
+      <tr>
+        <td>{{ $order->id }}</td>
+        <td>{{$order->customer->name}}</td>
+        <td>{{ $detail->food->name }}</td>
+        <td>{{ $detail->quantity }}</td>
+        <td>{{ $order->total_price }}</td>
+        <td>{{ $order->transaction_id }}</td>
+
+        <td>{{ $order->payment_method }}</td>
+        <td>{{ $order->payment_status }}</td>
+      </tr>
+      @endforeach
+      @endforeach
+
+    </tbody>
+  </table>
 </div>
-
-<div>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email Address</th>
-      <th scope="col">Password</th>
-      <th scope="col">Phone Number</th>
-      
-      <th scope="col">Address</th>
-      <th scope="col">DOB</th>
-      <th scope="col">Image</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-
-
-  
-  @foreach($data as $Customer)
-    <tr>
-
-      <td>{{$Customer->id}}</td>
-      <td>{{$Customer->name}}</td>
-      <td>{{$Customer->email}}</td>
-      <td>{{$Customer->password}}</td>
-      <td>{{$Customer->phoneno}}</td>
-     
-      <td>{{$Customer->address}}</td>
-      <td>{{$Customer->dob}}</td>
-      <td><img style="width: 200px;" src="{{url('/app/image/customer/'.$Customer->image)}}" alt=""></td>
-      <td>{{$Customer->status}}</td>
-      
-    </tr>
-    <td>
-    <a href="{{route('customer.delete',$Customer->id)}}" class="btn btn-danger">Delete</a>
-    </td>
-    @endforeach
-
-    
-    
-  </tbody>
-</table>
-</div>
+<script>
+  function printReport() {
+    window.print();
+  }
+</script>
 
 
 
-{{$data->links()}}
 
 @endsection

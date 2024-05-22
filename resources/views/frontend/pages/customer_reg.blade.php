@@ -65,23 +65,10 @@ background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244
                  
                 </div>
 
-                <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="form3Example4cg">dob</label>
-                  <input name="dob" type="date" id="form3Example4cg" class="form-control form-control-lg" />
+                
 
-                </div>
+                
 
-                <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="form3Example4cg">Image</label>
-                  <input name="image" type="file" id="form3Example4cg" class="form-control form-control-lg" />
-                  
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="form3Example4cg">Status</label>
-                  <input name="status" type="text" id="form3Example4cg" class="form-control form-control-lg" />
-                 
-                </div>
 
                
 
