@@ -7,17 +7,18 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="card-title mb-4">
+                        <h1 class="ml-5"><Strong>Profile</Strong></h1>
                         <div class="d-flex justify-content-start">
                             <div class="image-container">
-                                @if(auth()->user()->profile_image)
-                                    <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="User Image" class="img-fluid rounded-circle" width="150">
+                                @if(auth()->user()->image)
+                                    <img src="{{url('/uploads/customer' , $user->image) }}" alt="User Image" class="img-fluid rounded-circle" width="150">
                                 @else
                                     <i class="fas fa-user-circle fa-5x"></i> <!-- User icon -->
                                 @endif
                             </div>
                             <div class="userData ml-3">
                                 <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">
-                                    <a href="javascript:void(0);">User: {{ auth()->user()->name }}</a>
+                                    <a href=""></a>
                                 </h2>
                             </div>
                         </div>
@@ -60,6 +61,7 @@
                         </div>
                     </div>
                     </hr>
+                    <br>
                     <a href="{{ route('edit.profile', auth()->user()->id) }}" class="btn btn-primary">Edit</a>
                 </div>
             </div>

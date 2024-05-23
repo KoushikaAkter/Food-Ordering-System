@@ -6,41 +6,11 @@
         <div class="container">
             <div class="section-header text-center">
                 <p>Contact Us</p>
-                <h2>Contact For Any Query</h2>
+                <h2>For Any Query</h2>
+                
             </div>
             <div class="d-flex justify-content-center align-items-center flex-wrap contact-information">
-                <div class="col-md-6 col-lg-3 animated-slide">
-                    <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fa fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Address</h3>
-                            <p>Bashundhara, Dhaka, Bangladesh</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 animated-slide">
-                    <div class="contact-info">
-                        <div class="contact-icon">
-                            <i class="fa fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Call Us</h3>
-                            <p>01639608940</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 animated-slide order-lg-2 ml-lg-auto">
-                    <div class="contact-info">
-                      
-                        </div>
-                        <div class="contact-text">
-                            <h3>Email Us</h3>
-                            <p>koushika@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-md-6 col-lg-3 animated-slide">
                     <div class="contact-info">
                         
@@ -69,7 +39,7 @@
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>
-                            <button class="btn custom-btn" type="submit" id="sendMessageButton">Send Message</button>
+                            <button class="btn btn-success " type="submit" id="sendMessageButton">Send Message</button>
                         </div>
                     </form>
                 </div>

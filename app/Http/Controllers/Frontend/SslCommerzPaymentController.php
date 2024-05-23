@@ -163,7 +163,7 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-       
+    //    dd($request->all());
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
@@ -172,8 +172,10 @@ class SslCommerzPaymentController extends Controller
 
         #Check order status in order tabel against the transaction id or order id.
        $order=Order::find($tran_id);
+    //    dd($order);
 
         if ($order->status == 'pending') {
+            // dd('Ami eikhane');
             $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
 
             if ($validation) {
@@ -187,6 +189,7 @@ class SslCommerzPaymentController extends Controller
                 ]);
 
                 notify()->success('Payment successful.');
+                session()->forget('cart');
                 return redirect()->route('homepage');
 
             }else{

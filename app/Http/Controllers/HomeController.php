@@ -16,6 +16,7 @@ class HomeController extends Controller
          $category=Category::count();
          $food=Food::count();
          $order=Order::count();
+        //  dd($order);
         return view('backend.pages.dashboard',compact('customer','category','food','order'));
     }
 

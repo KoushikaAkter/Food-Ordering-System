@@ -30,7 +30,12 @@
 
       <td>{{$Customer->address}}</td>
       <td>
-        <img width="70px" src="{{url('/app/image/customer/'.$Customer->image)}}" alt="">
+        <img width="70px" 
+        @if($Customer->image) src="{{url('/uploads/customer' , $Customer->image) }}" 
+        @else 
+        <p>No image</p> 
+        @endif
+        
       </td>
 
       <td>

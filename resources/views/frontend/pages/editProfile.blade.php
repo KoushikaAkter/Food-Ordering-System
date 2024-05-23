@@ -22,6 +22,17 @@
                     <form action="{{route('update.profile',$customer->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
+
+                        <div class="row">
+                            <div class="col-sm-3 col-md-2 col-5">
+                                <label style="font-weight:bold;"> Image</label>
+                            </div>
+                            <div class="col-md-8 col-6">
+                                <input type="file"  placeholder="Enter imsge" name="image" alt="no image"> 
+                            </div>
+                        </div>
+                        <hr />
+                        
                         <div class="row">
                             <div class="col-sm-3 col-md-2 col-5">
                                 <label style="font-weight:bold;">Full Name</label>
@@ -60,6 +71,7 @@
                                 
                             </div>
                         </div>
+                        
                         </hr>
                     <button class="btn btn-info">Save</button>
                     </form>

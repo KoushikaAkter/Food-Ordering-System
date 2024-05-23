@@ -31,62 +31,70 @@ Route::get('about-us', [WebpageController::class, 'about_us'])->name('about.us')
 Route::get('/food/under/category/{cat_id}', [WebpageController::class, 'foodUnderCategory'])->name('food.under.category');
 Route::get('contact', [WebpageController::class, 'contact'])->name('contact');
 
-
-
-
-
 //REGISTRATION
 
-Route::get('/customer', [WebpageController::class, 'formreg'])->name('register');
-Route::post('/customer/done', [WebpageController::class, 'reg'])->name('customer.done');
-//WEBSITE//LOGIN//LOGOUT
-Route::get('/login/form', [WebpageController::class, 'loginForm'])->name('login.form');
-Route::post('/login/success', [WebpageController::class, 'loginsuccess'])->name('login.success');
+  Route::get('/customer', [WebpageController::class, 'formreg'])->name('register');
+  Route::post('/customer/done', [WebpageController::class, 'reg'])->name('customer.done');
+  //WEBSITE//REGISTRATION//LOGIN
+  Route::get('/login/form', [WebpageController::class, 'loginForm'])->name('login.form');
+  Route::post('/login/success', [WebpageController::class, 'loginsuccess'])->name('login.success');
 
-
-Route::middleware('auth:customerGuard')->group(function () {
+   Route::middleware('auth:customerGuard')->group(function () {
+   //logout
    Route::get('/logout/success', [WebpageController::class, 'logoutsuccess'])->name('logout.success');
-
    Route::get('/profile/view', [WebpageController::class, 'profileview'])->name('profile.view');
    Route::get('/profile/order/{id}', [WebpageController::class, 'singleOrderView'])->name('profile.view.order');
    Route::get('/profile/edit/{id}', [WebpageController::class, 'profileEdit'])->name('edit.profile');
    Route::put('/profile/update/{id}', [WebpageController::class, 'profileUpdate'])->name('update.profile');
 
-
-   //Route::get('/profile/view/order/{id}', [WebpageController::class, 'profilevieworder'])->name('profile.view.order');
-
-
-
-
    //ORDER 
    Route::get('/add-to-cart/{productId}', [OrderController::class, 'addToCart'])->name('add.to.cart');
    Route::get('/view-cart', [OrderController::class, 'viewCart'])->name('view.cart');
-   Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-   Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('order.place');
    Route::get('/clear-cart', [OrderController::class, 'clearCart'])->name('clear.cart');
    Route::get('/delete-order/{orderId}', [OrderController::class, 'deleteorder'])->name('delete.order');
+   
+   Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+   Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('order.place');
+   Route::post('/update-cart', [OrderController::class, 'updateCart'])->name('update.cart');
+   
 });
 
-// SSLCOMMERZ Start
+   // SSLCOMMERZ Start
 
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
-Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
-//SSLCOMMERZ END
+   Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+   Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+   Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+   Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+   //SSLCOMMERZ END
+
+
+
+
+
+
+
 
 //ADMIN LOGIN
-Route::group(['prefix' => 'admin'], function () {
-   Route::get('/login', [UserController::class, 'login'])->name('admin.login');
-   Route::post('/do-login', [UserController::class, 'doLogin'])->name('admin.do.login');
+      Route::group(['prefix' => 'admin'], function () {
+      Route::get('/login', [UserController::class, 'login'])->name('admin.login');
+      Route::post('/do-login', [UserController::class, 'doLogin'])->name('admin.do.login');
 
-   Route::group(['middleware' => 'auth'], function () {
+      Route::group(['middleware' => 'auth'], function () {
 
-      //adminDASHBOARD
+      //DASHBOARD
       Route::get('/', [HomeController::class, 'showHomePage'])->name('dashboard');
       //SIGNOUT
       Route::get('sign-out', [UserController::class, 'signout'])->name('do.signout');
 
+
+      //CATEGORY
+      Route::get('/category/list', [CategoryController::class, 'list'])->name('category.list');
+      Route::get('/category/form', [CategoryController::class, 'categoryForm'])->name('category.form');
+      Route::post('/category/store', [CategoryController::class, 'categoryStore'])->name('category.store');
+      Route::get('/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
+      Route::post('/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('category.update');
+      Route::get('/category/delete/{category_id}', [CategoryController::class, 'categoryDelete'])->name('category.delete');
+      Route::get('/category/view/{id}', [CategoryController::class, 'categoryView'])->name('category.view');
 
       //FOOD
       Route::get('/food/list', [FoodController::class, 'foodlist'])->name('food.list');
@@ -106,18 +114,9 @@ Route::group(['prefix' => 'admin'], function () {
       Route::get('/customer/delete/{category_id}', [CustomerController::class, 'customerDelete'])->name('customer.delete');
       Route::get('/customer/view/{id}', [CustomerController::class, 'customerView'])->name('customer.view');
 
-
-      //CATEGORY
-      Route::get('/category/list', [CategoryController::class, 'list'])->name('category.list');
-      Route::get('/category/form', [CategoryController::class, 'categoryForm'])->name('category.form');
-      Route::post('/category/store', [CategoryController::class, 'categoryStore'])->name('category.store');
-      Route::get('/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
-      Route::post('/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('category.update');
-      Route::get('/category/delete/{category_id}', [CategoryController::class, 'categoryDelete'])->name('category.delete');
-      Route::get('/category/view/{id}', [CategoryController::class, 'categoryView'])->name('category.view');
-      
+      //ADMIN ORDER
       Route::get('/order/list', [BackendOrderController::class, 'orderList'])->name('order.list');
-
+      //REPORT
       Route::get('/report-list', [BackendOrderController::class, 'reportList'])->name('report.list');
 
       

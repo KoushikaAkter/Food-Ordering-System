@@ -142,8 +142,23 @@ class WebpageController extends Controller
     }
 
     public function profileUpdate(Request $request, $id){
-        // dd($id);
+        // dd($request->all(), $id);
         $customer = Customer::find($id);
+
+        $customerImage='';
+        
+        if($request->hasFile('image'))  //name of image form
+        {
+            //generate name i.e: 20240416170933.jpeg
+            $customerImage=date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
+           
+             //2.3: store it into public folder
+             $request->file('image')->storeAs('/customer',$customerImage);
+             //public/uploads/category/20244394343.png
+
+
+
+        }
 
         $customer->update([
           
@@ -152,8 +167,7 @@ class WebpageController extends Controller
             'password'=>bcrypt($request->password),
             'phone'=>$request->phone,
             'address'=>$request->address,
-            
-          //  'image'=>$fileNameCustomer,
+            'image'=>$customerImage,
 
 
         ]);

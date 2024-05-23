@@ -65,6 +65,7 @@ class FoodController extends Controller
         $checkValidation = Validator::make($request->all(), [
             'name' => 'required',
             'price' => 'required|numeric|min:10', // Adding validation for price
+            'quantity'=> 'required|numeric|min:1', 
         ]);
     
         if ($checkValidation->fails()) {
