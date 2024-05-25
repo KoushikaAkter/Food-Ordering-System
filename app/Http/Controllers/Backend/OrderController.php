@@ -31,7 +31,22 @@ class OrderController extends Controller
         ->first();
 
     // dd($topFood);
-    return view('backend.pages.report.list', compact('topFood'));
+    $orders = Order::query();
+   
+
+    if (\request()->from_date && \request()->to_date) {
+        $from_date = Carbon::createFromFormat('Y-m-d', \request()->from_date)->startOfDay();
+        $to_date = Carbon::createFromFormat('Y-m-d', \request()->to_date)->endOfDay();
+       
+        
+        $orders->whereBetween('created_at', [$from_date, $to_date]);
+    }
+    else{
+        $orders->whereBetween('created_at', [Carbon::now()->subDays(90)->startOfDay(), Carbon::now()->endOfDay()]);
+    }
+    $list = $orders->with(['customer', 'orderDetails'])->latest()->get();
+    
+    return view('backend.pages.report.list', compact('topFood','list'));
 }
 
 
