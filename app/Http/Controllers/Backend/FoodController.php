@@ -10,39 +10,26 @@ use Illuminate\Support\Facades\Validator;
 
 class FoodController extends Controller
 {
-    
-    public function foodlist()
-    {
+     public function foodlist(){
         $foods = Food::paginate(5);
         return view('backend.pages.food.list', compact('foods'));
     }
-
-
-    public function  foodform()
-    {
+   
+    public function  foodform() {
         $category=Category::all();
-
-       return view('backend.pages.food.form',compact('category'));
-
+        return view('backend.pages.food.form',compact('category'));
     }
 
     //Edit
-     
-    public function foodedit($id)
-    {
+      public function foodedit($id) {
         $foods = Food::find($id);
         // dd($foods);
         return view('backend.pages.food.edit',compact('foods'));
     }
-
     //update
-    
     public function foodupdate(Request $request,$id){
-
-        // dd($request->all());
-
+     // dd($request->all());
         $food=Food::find($id);
-
         $food->update([
         'name'=>$request->name,
         // 'category_id'=>$request->cat_id,
@@ -56,9 +43,7 @@ class FoodController extends Controller
         return to_route('food.list');
     }
 
-        
-   
-    //foodpost
+         //foodpost
 
     public function foodstore(Request $request)
     {
@@ -94,14 +79,12 @@ class FoodController extends Controller
         return redirect()->back();
     }
     
- 
-    //DELETE
+//DELETE
 
 public function foodDelete($f_id)
 {
-
 // Food::find($f_id)->delete();
-
+ 
   $foods=Food::find($f_id);
   $foods->delete();
 
@@ -110,11 +93,9 @@ public function foodDelete($f_id)
 }
     //VIEW
 
-    public function foodView($id)
-    {
+    public function foodView($id) {
         $foods = Food::find($id);
-        
-        return view('backend.pages.food.view',compact('foods'));
+         return view('backend.pages.food.view',compact('foods'));
     }
 }
 

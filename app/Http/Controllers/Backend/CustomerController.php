@@ -27,7 +27,6 @@ class CustomerController extends Controller
                     'phone'=>'required|regex:/(01)[0-9]{9}/',
                     'address'=>'required',
                     'dob'=>'required|date',
-                   
                     'status'=>'required',
                    ]);
                         
@@ -38,11 +37,7 @@ class CustomerController extends Controller
                     return redirect()->back();
                    }
                    
-                
-        
                 Customer::Create([
-        
-                  
                     'name'=>$request->name,
                     'email'=>strtolower($request->email),
                     'password'=>bcrypt($request->password),
@@ -51,12 +46,9 @@ class CustomerController extends Controller
                     'dob'=>$request->dob,
                     'image'=>$request->image,
                     'status'=>$request->status,
-        
-        
                 ]);
         
                 notify()->success('customer Created Successfully.');
-        
                 return redirect()->route('customer.form');
                 
             }

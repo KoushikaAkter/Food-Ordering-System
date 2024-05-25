@@ -16,7 +16,6 @@ class WebpageController extends Controller
 {
     public function homepage()
     {
-
         $foods=Food::limit(9)->get();
         return view('frontend.pages.homepage',compact('foods'));
     }
@@ -35,9 +34,7 @@ class WebpageController extends Controller
 
     public function reg(Request $request)
     {
-
-// dd($request->all());
-
+        // dd($request->all());
         $checkValidation=FacadesValidator::make($request->all(),[
             'name'=>'required',
             'email'=>'required',
@@ -47,24 +44,19 @@ class WebpageController extends Controller
            ]);
                 
            if($checkValidation->fails()){
-
-
             notify()->error($checkValidation->getMessageBag());
             // notify()->error('somethings went wrong');
             return redirect()->back();
            }
            
            $fileNameCustomer='';
-    
            if($request->hasFile('image'))  //name of image form
            {
                //generate name i.e: 20240416170933.jpeg
                $fileNameCustomer=date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
-              
                 //2.3: store it into public folder
                 $request->file('image')->storeAs('/customer',$fileNameCustomer);
                 //public/uploads/category/20244394343.png
-   
            }
 
     
@@ -75,30 +67,21 @@ class WebpageController extends Controller
             'password'=>bcrypt($request->password),
             'phone'=>$request->phone,
             'address'=>$request->address,
-            
           //  'image'=>$fileNameCustomer,
-
 
         ]);
 
         notify()->success('registration Successfully.');
-
-
         return redirect()->route('homepage');
         
     }
 
     public function loginForm(){
-        return view('frontend.pages.login');
-
-    }
+    return view('frontend.pages.login');
+     }
     
     public function loginsuccess(Request $request){
-
-
-        //dd($request->all());
-
-
+    //dd($request->all());
         $userInput=['email'=>$request->email,'password'=>$request->password];
         $checkLogin=auth()->guard('customerGuard')->attempt($userInput);
 
@@ -106,7 +89,6 @@ class WebpageController extends Controller
          //dd("login done");
 
         notify()->success('Login successfull');
-
         return redirect()->route('homepage');
 
         }
@@ -144,7 +126,6 @@ class WebpageController extends Controller
     public function profileUpdate(Request $request, $id){
         // dd($request->all(), $id);
         $customer = Customer::find($id);
-
         $customerImage='';
         
         if($request->hasFile('image'))  //name of image form
@@ -155,32 +136,21 @@ class WebpageController extends Controller
              //2.3: store it into public folder
              $request->file('image')->storeAs('/customer',$customerImage);
              //public/uploads/category/20244394343.png
-
-
-
         }
 
         $customer->update([
-          
-            'name'=>$request->name,
+           'name'=>$request->name,
             'email'=>strtolower($request->email),
             'password'=>bcrypt($request->password),
             'phone'=>$request->phone,
             'address'=>$request->address,
             'image'=>$customerImage,
 
-
         ]);
         notify()->success('Updated Successfully');
-
         return redirect()->route('profile.view');
     }
     
-
-    public function contact()
-    {
-        return view('frontend.pages.contact');
-    }
 
     public function singleOrderView($id)
     {
@@ -189,8 +159,5 @@ class WebpageController extends Controller
         // dd($orderview);
         return view('frontend.pages.order.singleOrderView', compact('orderview'));
     }
-
-
-
 
 }

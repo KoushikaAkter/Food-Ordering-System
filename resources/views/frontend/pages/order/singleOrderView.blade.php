@@ -31,7 +31,7 @@
                         <div class="col-xl-8">
                             <ul class="list-unstyled">
                                 <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Name:</span> {{ auth()->user()->name }}</li>
-                                <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Phone:</span> {{ auth()->user()->email }}</li>
+                                <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Email:</span> {{ auth()->user()->email }}</li>
                                 <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Phone No:</span> {{ auth()->user()->phone }} </li>
                                 <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span class="fw-bold">Address:</span> {{ auth()->user()->address }} </li>
                             </ul>
@@ -44,6 +44,7 @@
                                         <th>Unit Price</th>
                                         <th>Quantity</th>
                                         <th>Subtotal</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>

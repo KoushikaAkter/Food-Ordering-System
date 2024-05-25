@@ -8,15 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function login()
-    {
-        return view('backend.pages.login');
+    public function login() {
+    return view('backend.pages.login');
     }
 
     public function doLogin(Request $request)
     {
         $userInput = $request->except('_token');
-
         // $checkLogin=Auth::attempt($userInput);
         $checkLogin = auth()->attempt($userInput);
         if ($checkLogin) {

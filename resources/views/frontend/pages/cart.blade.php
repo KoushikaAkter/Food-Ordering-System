@@ -41,7 +41,7 @@
                     <h5 class="mb-0" id="subtotal-{{ $cartItem['id'] }}">{{ $cartItem['quantity'] }} x {{ $cartItem['price'] }} = {{ $cartItem['subtotal'] }}</h5>
                   </div>
                   <div class="col-md-2 col-lg-2 col-xl-2 text-end">
-                    <a href="{{ route('delete.order', ['orderId' => $cartItem['id']]) }}" class="btn btn-warning">Delete</a>
+                    <a href="{{ route('delete.order', ['orderId' => $cartItem['id']]) }}" class="btn btn-danger">Delete</a>
                   </div>
                 </div>
               </div>

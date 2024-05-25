@@ -29,18 +29,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WebpageController::class, 'homepage'])->name('homepage');
 Route::get('about-us', [WebpageController::class, 'about_us'])->name('about.us');
 Route::get('/food/under/category/{cat_id}', [WebpageController::class, 'foodUnderCategory'])->name('food.under.category');
-Route::get('contact', [WebpageController::class, 'contact'])->name('contact');
 
 //REGISTRATION
 
   Route::get('/customer', [WebpageController::class, 'formreg'])->name('register');
   Route::post('/customer/done', [WebpageController::class, 'reg'])->name('customer.done');
-  //WEBSITE//REGISTRATION//LOGIN
+//WEBSITE//REGISTRATION//LOGIN
   Route::get('/login/form', [WebpageController::class, 'loginForm'])->name('login.form');
   Route::post('/login/success', [WebpageController::class, 'loginsuccess'])->name('login.success');
 
    Route::middleware('auth:customerGuard')->group(function () {
-   //logout
+ //logout
    Route::get('/logout/success', [WebpageController::class, 'logoutsuccess'])->name('logout.success');
    Route::get('/profile/view', [WebpageController::class, 'profileview'])->name('profile.view');
    Route::get('/profile/order/{id}', [WebpageController::class, 'singleOrderView'])->name('profile.view.order');
@@ -60,7 +59,6 @@ Route::get('contact', [WebpageController::class, 'contact'])->name('contact');
 });
 
    // SSLCOMMERZ Start
-
    Route::post('/success', [SslCommerzPaymentController::class, 'success']);
    Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
    Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
@@ -72,9 +70,7 @@ Route::get('contact', [WebpageController::class, 'contact'])->name('contact');
 
 
 
-
-
-//ADMIN LOGIN
+     //ADMIN LOGIN
       Route::group(['prefix' => 'admin'], function () {
       Route::get('/login', [UserController::class, 'login'])->name('admin.login');
       Route::post('/do-login', [UserController::class, 'doLogin'])->name('admin.do.login');
@@ -85,7 +81,6 @@ Route::get('contact', [WebpageController::class, 'contact'])->name('contact');
       Route::get('/', [HomeController::class, 'showHomePage'])->name('dashboard');
       //SIGNOUT
       Route::get('sign-out', [UserController::class, 'signout'])->name('do.signout');
-
 
       //CATEGORY
       Route::get('/category/list', [CategoryController::class, 'list'])->name('category.list');

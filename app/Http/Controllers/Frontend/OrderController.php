@@ -15,9 +15,7 @@ class OrderController extends Controller
 {
     public function  addToCart($productId)
     {
-
-
-        $product = Food::find($productId);
+       $product = Food::find($productId);
         $myCart = session()->get('cart');
 
         if (empty($myCart)) {
@@ -32,9 +30,7 @@ class OrderController extends Controller
             ];
 
             // dd($newCart);
-
             session()->put('cart', $newCart);
-
             notify()->success('Product added to cart successfully.');
             return redirect()->back();
         } else {
@@ -47,7 +43,6 @@ class OrderController extends Controller
                 $myCart[$productId]['subtotal'] = $myCart[$productId]['quantity'] * $myCart[$productId]['price'];
 
                 session()->put('cart', $myCart);
-
                 notify()->success('Food quantity updated.');
                 return redirect()->back();
             } else {

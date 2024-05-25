@@ -9,13 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    public function list()
-    {
-
+    public function list() {
         $categories = Category::paginate(5); //select * from categories;
         // dd($box);
-
-
         return view('backend.pages.category.list', compact('categories'));
     }
 
@@ -23,41 +19,30 @@ class CategoryController extends Controller
     {
         return view('backend.pages.category.create');
     }
-    
-
-
-     //Edit
      
-     public function categoryEdit($id)
-     {
+ //Edit
+     
+     public function categoryEdit($id) {
          $categories = Category::find($id);
          // dd($foods);
          return view('backend.pages.category.edit',compact('categories'));
-     }
- 
-     //update
-     
-     public function categoryUpdate(Request $request,$id){
- 
-        // dd($request->all());
+        }
+
+ //update
+       public function categoryUpdate(Request $request,$id){
+          // dd($request->all());
          $request->validate([
             'name' => $request->cat_name,
             'description' => $request->description,
             
          ]);
          notify()->success('Category updated successfully');
-         return to_route('category.list');}
+         return to_route('category.list');
+        }
  
+ //foodpost
 
-
-
-
-
-        //foodpost
-
-    public function categoryStore(Request $request)
-    {
-
+    public function categoryStore(Request $request) {
         $checkValidation = Validator::make($request->all(), [
             'cat_name' => 'required',
         ]);
@@ -75,11 +60,6 @@ class CategoryController extends Controller
             $cat_image = 'IMG' . '-' . date('Ymdhsi') . '.' . $image->getClientOriginalExtension();
             $image->storeAs('/category',$cat_image );
         }
-
-
-
-
-
         Category::create([
             //bam pase column name => dan pase value
             'name' => $request->cat_name,
@@ -88,20 +68,14 @@ class CategoryController extends Controller
         ]);
 
         notify()->success('Category created successfully.');
-
         return redirect()->route('category.list');
     }
 
-
-
-    //delete
-
+ //delete
 
     public function categoryDelete($c_id)
     {
-    
     // Food::find($f_id)->delete();
-    
       $categories=Category::find($c_id);
       $categories->delete();
     
@@ -109,13 +83,12 @@ class CategoryController extends Controller
       return redirect()->back();
     }
 
-      //VIEW
+ //VIEW
     public function categoryView($id)
     {
         $categories = Category::find($id);
         // dd($foods);
         return view('backend.pages.category.view',compact('categories'));
     }
-
 
 }
